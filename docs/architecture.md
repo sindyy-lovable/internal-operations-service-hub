@@ -236,7 +236,8 @@ The architecture does not define exact request categories, statuses, approval ru
 
 The following diagram presents the high-level architecture of the Internal Operations Service Hub.
 
-![alt text](architecture-diagram.png-1.jpeg)
+![Architecture Diagram](architecture-diagram.png.jpeg)
+
 
 
 
