@@ -1,4 +1,4 @@
-import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
+import { BadRequestException, ForbiddenException, Injectable, NotFoundException } from '@nestjs/common';
 import { randomUUID } from 'node:crypto';
 import { isValidTransition } from './transition-policy';
 import {
@@ -38,10 +38,14 @@ export class LifecycleService {
     return this.snapshot(request);
   }
 
-  transition(requestId: string, nextStatus: RequestStatus): ServiceRequest {
+  transition(requestId: string, nextStatus: RequestStatus, actor = 'IT', department = 'IT'): ServiceRequest {
     const request = this.requests.get(requestId);
     if (!request) {
       throw new NotFoundException(`Request ${requestId} was not found`);
+    }
+
+    if (actor !== 'IT' || department !== 'IT') {
+      throw new ForbiddenException('only IT actors may transition this request');
     }
 
     if (!isValidTransition(request.status, nextStatus)) {
