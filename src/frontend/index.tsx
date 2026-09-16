@@ -9,8 +9,8 @@ function App() {
   const [actor, setActor] = React.useState('IT')
 
   async function createRequest() {
-    const response = await fetch('/requests', {
-      method: 'POST',
+const response = await fetch('http://localhost:3000/requests', {
+        method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ description }),
     });
@@ -28,8 +28,8 @@ function App() {
   }
 
   async function transition() {
-    const response = await fetch(`/requests/${requestId}/status`, {
-      method: 'PATCH',
+const response = await fetch(`http://localhost:3000/requests/${requestId}/status`, {
+        method: 'PATCH',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ status: 'IN_PROGRESS', actor, department: 'IT' }),
     });

@@ -2,3 +2,6 @@ node_modules/
 dist/
 coverage/
 .env
+.parcel-cache/
+public/index.js
+public/index.js.map

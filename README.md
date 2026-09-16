@@ -10,9 +10,20 @@ npm install
 
 ## Run
 
+Start the NestJS backend:
+
 ```bash
 npm run start:dev
 ```
+
+In a second terminal, start the React frontend:
+
+```bash
+npm run start:ui
+```
+
+The backend runs on `http://localhost:3000`.
+Open the frontend URL shown by Parcel in the terminal to exercise the Service Request flow.
 
 ## User Flow
 
