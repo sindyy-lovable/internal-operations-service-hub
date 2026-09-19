@@ -4,7 +4,7 @@
 
 The Week 2 implementation was based on these Week 1 sources:
 
-- [Product specification](product-spec.md): requires request submission, status updates, progress tracking, completion, reliability, and traceability; it intentionally leaves exact statuses and transitions undefined.
+- [Product specification](product-spec.md): requires request submission, status updates, progress tracking, completion, reliability, and traceability. At the start of Week 2, the exact statuses and transitions were still undefined.
 - [Architecture](architecture.md): separates request management from workflow and request history, and requires the last confirmed state to remain valid after a failed update.
 - [Data model](data-model.md): keeps current status on the Service Request and records important status changes in Request History.
 - [ADR-001](../decisions/ADR-001.md): decides to maintain current request state together with a separate Request History.

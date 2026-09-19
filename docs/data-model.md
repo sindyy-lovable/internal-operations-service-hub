@@ -82,7 +82,7 @@ The current status is maintained on the Service Request, while important status 
 
 The request continues through its defined workflow until it reaches a completed state.
 
-The exact status values and allowed transitions are not defined yet because they remain unknown in the product specification.
+The implemented statuses are SUBMITTED, IN_PROGRESS, and COMPLETED. The allowed transitions are SUBMITTED to IN_PROGRESS and IN_PROGRESS to COMPLETED.
 
 ### Data Rules
 
@@ -110,7 +110,7 @@ A relational storage model is suitable for the current system because the main d
 
 Service Requests are connected to Users, Request Categories, Department Assignments, Departments, and Request History. A relational model helps keep these relationships consistent and supports the traceability required by the system.
 
-The specific database technology is not selected at this stage because implementation details are outside the current scope.
+The implemented persistence layer uses SQLite through TypeORM for Service Requests and Request History.
 
 ### Durable Data
 

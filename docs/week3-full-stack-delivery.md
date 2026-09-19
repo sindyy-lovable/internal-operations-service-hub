@@ -6,9 +6,16 @@ This repository keeps the Week 2 service request lifecycle and adds a narrow Wee
 - `GET /requests/:requestId` for reading a request and a minimal history
 - `PATCH /requests/:requestId/status` for one business transition
 
+## API Contract
+
+- `POST /requests` accepts a non-empty `description` and returns the created request.
+- `GET /requests/:requestId` returns `id`, `description`, `status`, and `history`.
+- `PATCH /requests/:requestId/status` accepts `status`, `actor`, and `department`, and returns the updated request.
+
 The UI is intentionally small and focused on creating, viewing, and making one permitted status transition. It uses a simple authorization rule for one permitted department actor (`IT`) and one denied case (`HR`).
 
 The backend is backed by SQLite persistence through TypeORM. The database stores service requests and request history records.
+
 
 The explicit invalid request case is an empty description, which receives `400 Bad Request`. The explicit expected failure case is a missing request ID that receives `404 Not Found`. The authorization denied case receives `403 Forbidden`.
 

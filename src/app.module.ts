@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { LifecycleModule } from './lifecycle/lifecycle.module';
+import { AiIntakeModule } from './ai-intake/ai-intake.module';
 import { ServiceRequestEntity, RequestHistoryEntryEntity } from './lifecycle/lifecycle.entities';
 
 @Module({
@@ -13,6 +14,7 @@ import { ServiceRequestEntity, RequestHistoryEntryEntity } from './lifecycle/lif
       logging: false,
     }),
     LifecycleModule,
+    AiIntakeModule,
   ],
 })
 export class AppModule {}

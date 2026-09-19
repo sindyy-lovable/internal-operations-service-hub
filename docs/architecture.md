@@ -8,7 +8,7 @@ This architecture defines the main design of the Internal Operations Service Hub
 
 The system supports employees in submitting internal service requests, routing them to the appropriate department, allowing authorized department members to handle them, and tracking requests until completion.
 
-This document focuses on system responsibilities, components, flows, boundaries, reliability, and major architecture decisions. Implementation details are outside the current scope.
+This document describes the system responsibilities, components, flows, boundaries, reliability, and major architecture decisions for the implemented and planned capabilities.
 
 ## 2. Requirements Driving the Design
 
@@ -81,6 +81,12 @@ Maintains important status changes, handling updates, and department transfers.
 Controls access to protected request information and actions.
 
 **Why it exists:** NFR-1, NFR-2, and AC-8 require access and modifications to be limited to authorized users.
+
+### AI-Assisted Request Intake
+
+Accepts employee free-text input and produces a structured suggestion for request intake.
+
+AI output is advisory. The backend validates allowed values and product rules before using the suggestion.
 
 ## 5. External Dependencies
 
@@ -226,7 +232,7 @@ No external service is treated as required unless it is confirmed by the product
 - **NFR-5:** Reliability and failure handling
 - **NFR-6:** Request History and traceable request flows
 
-The architecture does not define exact request categories, statuses, approval rules, routing rules, role permissions, notification behavior, or multi-department ordering because these remain unknown in `product-spec.md`.
+The implemented lifecycle uses SUBMITTED, IN_PROGRESS, and COMPLETED. Request categories, approval rules, broader permissions, routing rules, notifications, and multi-department ordering remain undefined.
 
 
 

@@ -26,7 +26,13 @@ The product must allow employees to submit internal service requests, route requ
 
 ### 5. What is still unknown?
 
-The exact request categories, statuses, approval rules, access permissions, and routing rules have not yet been defined. It is also unknown whether certain requests must pass through departments in a specific order, whether requests can be sent directly to a department, and how multi-department workflows should operate.
+Request categories, approval rules, broader role permissions, routing rules, and multi-department workflow details are not yet fully defined.
+
+For the currently implemented request lifecycle, the known statuses are SUBMITTED, IN_PROGRESS, and COMPLETED. The implemented transitions are SUBMITTED to IN_PROGRESS and IN_PROGRESS to COMPLETED.
+
+The current bounded authorization rule permits IT actors in the IT department to perform the implemented status transition. Broader authorization rules for other departments and request types remain undefined.
+
+It is also still unknown whether certain requests must pass through departments in a specific order, whether requests can be reassigned, and what notification behavior will be required.
 
 ### 6. What assumptions did you make?
 
@@ -88,6 +94,8 @@ The Internal Operations Service Hub will provide one place where employees can s
 - FR-8: Employees must be able to view the current status and progress of requests they submitted.
 - FR-9: The system must support workflows involving more than one department when required.
 - FR-10: The system must maintain a history of important request updates and status changes until completion.
+- FR-11: The system must support AI-assisted intake from employee free-text input.
+- FR-12: AI suggestions must be validated by the backend before they are accepted or used.
 
 ### 5. Non-Functional Requirements
 
@@ -112,20 +120,17 @@ The Internal Operations Service Hub will provide one place where employees can s
 
 - The system is intended for internal company use.
 - The initial scope is limited to submitting, routing, handling, and following internal service requests.
-- This phase is limited to defining the product specification; implementation is not included.
-- Technical architecture, database design, and API design are not part of this phase.
-- AI features are not part of the current scope.
+- The system uses a React frontend, NestJS backend, and SQLite persistence through TypeORM.
+- AI-assisted request intake may suggest structured request information, but backend validation and product rules remain authoritative.
 
 #### Unknowns
 
 - What request types and categories must the system support?
 - What information is required when submitting each type of request?
-- What statuses must a request support?
 - How is the appropriate department determined for each request?
 - Can a request be sent directly to a department, or must certain requests follow a specific department order?
 - If multiple departments are involved, what determines the order of handling?
 - Are approvals required for certain request types?
-- Who is authorized to change a request's status?
 - What access permissions should each role have?
 - Can requests be reassigned or returned to a previous department?
 - Are notifications required when a request is submitted, updated, transferred, or completed?
@@ -135,11 +140,8 @@ The Internal Operations Service Hub will provide one place where employees can s
 - The system will not manage external or customer-facing service requests.
 - The system will not replace complete HR or IT management systems.
 - The system will not define department-specific business processes that have not yet been provided.
-- AI-based request handling, classification, or decision-making is not part of the current scope.
-- Frontend and backend implementation are not part of this specification phase.
-- Database schema design is not part of this specification phase.
-- API design is not part of this specification phase.
-- Architecture diagrams are not part of this specification phase.
+- AI does not make final authorization, routing, or lifecycle decisions.
+- External integrations, deployment, CI/CD, monitoring, and production infrastructure are not part of the current scope.
 
 ### 8. Acceptance Criteria
 

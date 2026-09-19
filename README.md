@@ -1,12 +1,22 @@
 # Internal Operations Service Hub
 
-This repository contains the approved Week 3 bounded full-stack service-request slice on top of the existing Week 2 lifecycle regression behavior.
+This repository contains the service-request lifecycle, full-stack request flow, and AI-assisted request intake capability.
 
 ## Install
 
 ```bash
 npm install
 ```
+
+## Environment
+
+Create a `.env` file in the project root:
+
+```text
+REQUESTY_API_KEY=your_requesty_api_key
+```
+
+The `.env` file is ignored by Git.
 
 ## Run
 
@@ -22,15 +32,39 @@ In a second terminal, start the React frontend:
 npm run start:ui
 ```
 
-The backend runs on `http://localhost:3000`.
-Open the frontend URL shown by Parcel in the terminal to exercise the Service Request flow.
+The backend runs on:
 
-## User Flow
+```text
+http://localhost:3000
+```
 
-1. Submit a valid request with `POST /requests` and a non-empty `description` string.
-2. Read the created request with `GET /requests/:requestId`.
-3. Transition the request from `SUBMITTED` to `IN_PROGRESS` using `PATCH /requests/:requestId/status` with `actor: "IT"` and `department: "IT"`.
-4. A non-permitted actor such as `HR` receives `403 Forbidden` for the same transition.
+The frontend is served by Parcel, normally at:
+
+```text
+http://localhost:1234
+```
+
+## AI-Assisted Intake
+
+Employees can enter a free-text request and use AI Assist before creating the request.
+
+The AI suggests:
+
+- category: `IT`, `HR`, or `UNKNOWN`
+- summary
+- whether clarification is required
+
+AI output is advisory. The backend validates allowed product values and remains authoritative.
+
+## Request Lifecycle
+
+The implemented lifecycle is:
+
+```text
+SUBMITTED -> IN_PROGRESS -> COMPLETED
+```
+
+The current bounded authorization rule permits IT actors in the IT department to perform the implemented status transition.
 
 ## Tests
 
@@ -39,5 +73,14 @@ npm test
 npm run build
 ```
 
-The repository preserves the existing Week 2 regression lifecycle tests and adds the minimal Week 3 business-rule, database integration, and E2E tests required by the assignment.
+## AI Evaluations
 
+Run the Week 4 AI evaluation set with:
+
+```bash
+npm run eval:ai
+```
+
+The evaluation set covers clear, thin, ambiguous, mixed-context, invalid-output, and provider-failure cases.
+
+See `docs/week4-production-ai.md` for the Week 4 capability and evaluation evidence.
