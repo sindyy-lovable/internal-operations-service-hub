@@ -34,7 +34,7 @@ Each request has one requester and keeps the information needed to understand th
 
 Represents the category used to help identify what type of request was submitted and support routing to the appropriate department.
 
-The exact categories are still undefined.
+The current AI-assisted intake uses `IT`, `HR`, and `UNKNOWN` as bounded category suggestions. A broader request-category taxonomy remains undefined.
 
 ### Department Assignment
 
@@ -46,7 +46,7 @@ A request may have one or more department assignments when a multi-department wo
 
 Represents important changes that happen during the life of a request, such as status changes, handling updates, and department transfers.
 
-Each history entry belongs to one request and should keep enough information to show what changed and when it happened.  
+Each history entry belongs to one request and should keep enough information to show what changed and when it happened.
 
 ## 3. Relationships, Cardinality, and Ownership
 
@@ -110,7 +110,7 @@ A relational storage model is suitable for the current system because the main d
 
 Service Requests are connected to Users, Request Categories, Department Assignments, Departments, and Request History. A relational model helps keep these relationships consistent and supports the traceability required by the system.
 
-The implemented persistence layer uses SQLite through TypeORM for Service Requests and Request History.
+The implemented persistence layer uses TypeORM for Service Requests and Request History. Local development uses SQLite, while the production deployment uses PostgreSQL.
 
 ### Durable Data
 

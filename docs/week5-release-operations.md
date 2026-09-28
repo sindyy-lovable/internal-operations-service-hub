@@ -23,6 +23,7 @@ Start command:
 ```bash
 npm run start:prod
 ```
+
 ## Environment Configuration
 
 The deployed service uses these environment variables:
@@ -32,6 +33,7 @@ The deployed service uses these environment variables:
 - `FORCE_NOT_READY=false` - controlled readiness-failure switch used for verification
 
 Secrets are configured in Render and are not committed to the repository.
+
 ## Health Check
 
 The application exposes:
@@ -51,6 +53,7 @@ A healthy deployment returns:
 ```
 
 The `release` field identifies the Git commit currently deployed by Render.
+
 ## Production Verification
 
 The deployed application was verified through the live UI:
@@ -62,6 +65,7 @@ The deployed application was verified through the live UI:
 5. The request transitioned from `SUBMITTED` to `IN_PROGRESS`.
 6. The request transitioned from `IN_PROGRESS` to `COMPLETED`.
 7. The completed state remained available after another refresh.
+
 ## Failure and Recovery
 
 Two controlled failure scenarios were verified.

@@ -90,9 +90,15 @@ AI output is advisory. The backend validates allowed values and product rules be
 
 ## 5. External Dependencies
 
-No specific external system dependency is confirmed by the current product specification.
+The current implementation uses the following external dependencies:
 
-The specification assumes that employees have an identity or account to access the system, but it does not define whether this is provided by an external identity service. Therefore, no external identity service is introduced as a confirmed dependency in the current architecture.
+- **Requesty:** provides the AI model used for AI-assisted request intake.
+- **Render PostgreSQL:** provides the production database.
+- **Render Web Service:** hosts the deployed application.
+
+The AI provider remains advisory. Product-owned rules and allowed values are validated by the backend.
+
+Employee identity is still treated as an application assumption because no external identity provider has been defined.
 
 ## 6. Important Data Flows
 
@@ -209,11 +215,13 @@ Authorization is checked before protected request information is accessed or mod
 
 **Driven by:** NFR-1, NFR-2, and AC-8.
 
-### Decision 5 - Do Not Introduce Unconfirmed External Dependencies
+### Decision 5 - Keep External Dependencies Explicit and Bounded
 
-No external service is treated as required unless it is confirmed by the product specification.
+External services are introduced only when required by the implemented capability.
 
-**Driven by:** The assumption that employees have an identity or account, while the source of that identity remains undefined.
+The current implementation uses Requesty for AI-assisted intake and Render for production hosting and PostgreSQL persistence.
+
+**Driven by:** The need to support the implemented AI capability and production deployment without introducing unnecessary infrastructure.
 
 ## 12. Traceability to the Product Specification
 
@@ -226,17 +234,15 @@ No external service is treated as required unless it is confirmed by the product
 - **FR-8:** User Interface, Request Management, and Request History
 - **FR-9:** Routing and Workflow and Request History
 - **FR-10:** Request History
+- **FR-11:** AI-Assisted Request Intake
+- **FR-12:** AI-Assisted Request Intake and backend validation
 - **NFR-1 and NFR-2:** Authorization and trust boundaries
 - **NFR-3:** User Interface responsibility and simple user-facing flows
 - **NFR-4:** Direct communication for common user actions requiring a reasonable response time
 - **NFR-5:** Reliability and failure handling
 - **NFR-6:** Request History and traceable request flows
 
-The implemented lifecycle uses SUBMITTED, IN_PROGRESS, and COMPLETED. Request categories, approval rules, broader permissions, routing rules, notifications, and multi-department ordering remain undefined.
-
-
-
-
+The implemented lifecycle uses SUBMITTED, IN_PROGRESS, and COMPLETED. The current AI intake supports IT, HR, and UNKNOWN categories. Broader request categories, approval rules, broader permissions, routing rules, notifications, and multi-department ordering remain undefined.
 
 ## 13. Architecture Diagram
 

@@ -20,7 +20,7 @@ The backend integrates with Requesty and uses the `google/gemma-4-31b-it` model.
 
 The AI provider is isolated behind an `AiIntakeProvider` contract so the rest of the application does not depend directly on a specific AI provider.
 
-The Requesty API key is loaded from the local `.env` file and is not committed to Git.
+The Requesty API key is loaded from environment configuration. Local development uses the `.env` file, while production uses the Render environment configuration. The API key is not committed to Git.
 
 ## Product Authority
 
@@ -58,3 +58,4 @@ Run the evaluations with:
 
 ```bash
 npm run eval:ai
+```

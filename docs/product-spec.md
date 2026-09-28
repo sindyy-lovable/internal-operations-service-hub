@@ -1,5 +1,5 @@
 # Internal Operations Service Hub
-**Student Name:SINDY TAUK**
+**Student Name: SINDY TAUK**
 
 ## What Does Done Mean?
 
@@ -26,11 +26,11 @@ The product must allow employees to submit internal service requests, route requ
 
 ### 5. What is still unknown?
 
-Request categories, approval rules, broader role permissions, routing rules, and multi-department workflow details are not yet fully defined.
+Broader request categories beyond the current `IT`, `HR`, and `UNKNOWN` AI suggestions, approval rules, broader role permissions, routing rules, and multi-department workflow details are not yet fully defined.
 
 For the currently implemented request lifecycle, the known statuses are SUBMITTED, IN_PROGRESS, and COMPLETED. The implemented transitions are SUBMITTED to IN_PROGRESS and IN_PROGRESS to COMPLETED.
 
-The current bounded authorization rule permits IT actors in the IT department to perform the implemented status transition. Broader authorization rules for other departments and request types remain undefined.
+The current bounded authorization rule permits IT actors in the IT department to perform the implemented status transitions. Broader authorization rules for other departments and request types remain undefined.
 
 It is also still unknown whether certain requests must pass through departments in a specific order, whether requests can be reassigned, and what notification behavior will be required.
 
@@ -44,7 +44,7 @@ It is also still unknown whether certain requests must pass through departments 
 
 ### 7. What are you deliberately not solving?
 
-The current scope does not include external customer requests, complete HR or IT management functionality, AI-based request handling or decision-making, or undefined department-specific business processes. Technical architecture, database design, and API design are also outside the scope of this specification.
+The current scope does not include external customer requests, complete HR or IT management functionality, AI making final authorization, routing, or lifecycle decisions, or undefined department-specific business processes. Detailed database schema and API design remain implementation concerns rather than product-specification concerns.
 
 ### 8. What are a few examples of correct behavior?
 
@@ -120,12 +120,12 @@ The Internal Operations Service Hub will provide one place where employees can s
 
 - The system is intended for internal company use.
 - The initial scope is limited to submitting, routing, handling, and following internal service requests.
-- The system uses a React frontend, NestJS backend, and SQLite persistence through TypeORM.
+- The system uses a React frontend and NestJS backend with TypeORM persistence. Local development uses SQLite, while the production deployment uses PostgreSQL.
 - AI-assisted request intake may suggest structured request information, but backend validation and product rules remain authoritative.
 
 #### Unknowns
 
-- What request types and categories must the system support?
+- What broader request types and categories beyond the current `IT`, `HR`, and `UNKNOWN` suggestions must the system support?
 - What information is required when submitting each type of request?
 - How is the appropriate department determined for each request?
 - Can a request be sent directly to a department, or must certain requests follow a specific department order?
@@ -141,7 +141,7 @@ The Internal Operations Service Hub will provide one place where employees can s
 - The system will not replace complete HR or IT management systems.
 - The system will not define department-specific business processes that have not yet been provided.
 - AI does not make final authorization, routing, or lifecycle decisions.
-- External integrations, deployment, CI/CD, monitoring, and production infrastructure are not part of the current scope.
+- Advanced CI/CD automation, advanced monitoring, and additional external integrations beyond the implemented AI provider and production hosting are not part of the current bounded scope.
 
 ### 8. Acceptance Criteria
 
@@ -154,3 +154,5 @@ The Internal Operations Service Hub will provide one place where employees can s
 - AC-7: Important status changes and handling updates are recorded and remain available as part of the request history.
 - AC-8: A user without the required permission cannot view or modify restricted request information.
 - AC-9: A request can be tracked from initial submission until it reaches a completed state.
+- AC-10: Given employee free-text input, when AI-assisted intake is used, the system returns a structured suggestion containing a category, summary, and clarification indicator.
+- AC-11: AI suggestions are accepted only after backend validation, and invalid or unavailable AI output must not bypass product-owned rules.
