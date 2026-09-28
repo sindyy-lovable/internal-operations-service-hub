@@ -13,7 +13,8 @@
   "test": "jest --runInBand",
   "test:watch": "jest --watch",
   "test:cov": "jest --coverage",
-  "eval:ai": "ts-node src/ai-intake/ai-intake.eval.ts"
+"eval:ai": "ts-node src/ai-intake/ai-intake.eval.ts",
+"release:check": "npm test && npm run build && npm run eval:ai"
 },
   "dependencies": {
     "@nestjs/common": "^11.0.0",
